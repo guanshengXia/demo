@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        //javascript一共有四种表示集合的数据结构  Array, Object, Set, Map
+        // 只有Object没有实现 Iterator 接口,不能直接用for...of遍历，因此对象用for...in来遍历
+
+
+        // 一种数据结构只要部署了 Iterator 接口，我们就称这种数据结构是“可遍历的”（iterable）
+        // 就可以使用for...of进行遍历
+        // 一个数据结构只要具有Symbol.iterator属性，就可以认为是“可遍历的”（iterable）
+        var arr = [4, 5, 6];
+        console.log(arr);
+
+        for(var v of arr){   // v是元素而非索引
+            console.log(v);
+        }
+
+
+        // 对象
+        var o = {
+            name: "aaa",
+            age: 20
+        };
+
+        console.log(o);
+        // for(var v of o){   // Uncaught TypeError: o is not iterable   对象遍历for  in
+        //     console.log(v);
+        // }
+
+
+  
+//set数组结构
+        var arr = [11, 22, 11, 88, 66, 88];
+        console.log(arr);
+   // 使用Set构造函数来创建set对象  S大写
+        var set1 = new Set();
+        
+    // 为set添加元素
+        set1.add(88);
+        set1.add(77);
+        console.log(set1);
+
+    // size属性可以得到set的元素个数（集合长度）
+        console.log(set1.size);
+
+        let set2 = set1.add(66).add(44).add(33);  // set2和set1指向同一块内存，修改其中一个必然影响另一个
+        // let set2 = set1;    
+        console.log(set1);
+        console.log(set2);
+        set2.add("yyy");
+        console.log(set1);
+        console.log(set2);
+
+    // 删除set中的某个元素
+        console.log(set1.delete("yyy"));  // true表示删除成功
+        console.log(set1);
+
+    // 清空set集合
+        // set1.clear();
+        // console.log(set1);
+
+// 检测是否包含某个元素（成员） 返回true|false
+        console.log(set1.has(88));   
+        console.log(set1.has(22));
+
+    // 向set中添加重复元素,不会生效， 说明set中的元素是不重复的
+        set1.add(88);
+        console.log(set1);
+
+// 使用set实现数组去重（不能操作原数组）
+        // let set3 = new Set(arr);
+        // console.log(set3);
+// // 将集合再转成数组
+        // let arr2 = Array.from(set3);
+        // console.log(arr2);
+
+
+        // 
+        // var arr = [];
+        // console.log(arr.push("pp", "uu"));
+        // var arr1 = arr;
+        // arr1.splice(0, 1);
+        // console.log(arr);
+        // console.log(arr1);
+
+        // var s = "hello";
+        // var s1 = s;
+        // s = "hi";
+        // console.log(s, s1);
+
+       
+// 用es6的set实现数组去重（产生新数组）
+        let arrUnique = crr => {
+            return Array.from(new Set(crr));
+        };
+
+        console.log(arrUnique(arr));
+        
+    </script>
+</body>
+</html>

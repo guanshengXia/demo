@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         //将字符串中的数字找出，连续的数字认为是一个数字
+   var str='asa456fsf4fdg566aa4fs7g9';
+   var p=/\d+/g;
+   var a=str.match(p);
+   console.log(a);
+
+   var tem='';
+   var arr=[];
+   for(var i=0;i<str.length;i++){
+       if(str[i]>='0'&&str[i]<='9'){
+           tem+=str[i];
+       }else{
+           if(tem!=''){
+               arr.push(tem);
+               tem='';
+           }
+       }
+   }
+   if(tem!=''){
+        arr.push(tem);
+
+    }
+   console.log(arr);
+    //    var url="https://www.baidu.com/s?wd=汽车&rsv_spt=1&rsv_iqid=0xf1a888be0000b35e&issp=1&f=8&rsv_bp=1&rsv_idx=2&ie=utf-8&tn=baiduhome_pg&rsv_enter=1";
+    //     var xhr=new XMLHttpRequest();
+    //     xhr.open("get",url,true);
+    //     xhr.send();
+    //     xhr.onreadystatechange=function(res){
+    //         if(res.target.readyState==4&&res.target.status==200){
+    //             console.log(xhr.responseText);
+    //         }
+    //     }
+        // function fn(data){
+        //     console.log(data);
+        // }
+    </script>
+    
+   <!-- <script src="https://www.baidu.com/s?wd=汽车&rsv_spt=1&rsv_iqid=0xf1a888be0000b35e&issp=1&f=8&rsv_bp=1&rsv_idx=2&ie=utf-8&tn=baiduhome_pg&rsv_enter=1"></script> -->
+    <!-- <script src="http://v.juhe.cn/weather/index?format=2&cityname=%E8%8B%8F%E5%B7%9E&key=2d75273523dc2e6b524416cb348dd2fb&callback=fn"></script> -->
+</body>
+</html>

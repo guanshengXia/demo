@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        var arr = [3, 5, 8];
+        // console.log(arr.length);  //3
+        //                                 // 数组的length属性是可写的
+        // arr.length = 1;
+        // console.log(arr); //[3]
+
+        // // set.size 属性是只读的
+        // var s1 = new Set(arr);
+        // s1.size = 1;   // 改变无效
+        // console.log(s1);  //{3}
+
+        // 产生新数组
+        // es5          数组去重方法
+        function arrUnique(arr){
+            var brr = [];
+            arr.forEach(e => {
+                if(brr.indexOf(e) === -1){  //e在brr中没有出现过
+                    brr.push(e);
+                }
+            });
+            return brr;
+        }
+
+        var crr = [11, 22, 11,33, 44, 55, 22, 77];
+        var drr = arrUnique(crr);
+        console.log(drr);
+
+//如果要求这样调用 crr.arrUnique()， 那么arrUnique方法就应该设置在Array的原型上
+        Array.prototype.arrUnique = function() {
+            var brr = [];
+            this.forEach(e => {
+                if(brr.indexOf(e) === -1){
+                    brr.push(e);
+                }
+            });
+            return brr;
+        };
+
+        // 去覆盖系统定义的sort
+        // Array.prototype.sort = function() {
+        //     console.log("sort...")
+        // };
+
+        var err = crr.arrUnique();
+        console.log(err);
+
+        // err.sort();
+
+
+// es6的方法    去重方法   通过set   Array from(set(arr);抓话为数组
+        function arrUnique2(arr) {
+            // var s = new Set(arr);   // 将arr转成不重复元素的set
+            return Array.from(new Set(arr));
+        }
+
+        var frr = arrUnique2(crr);
+        console.log(frr);
+
+
+
+        function arrUnique3(arr) {
+            return [...new Set(arr)];
+        }
+
+        var grr = arrUnique3(crr);
+        console.log(grr);
+
+
+        // var s1 = new Set([5, 5, 6, 4, 7, 7]);
+        // console.log([...s1]);
+
+
+
+    // 原数组的基础上操作
+        Array.prototype.unique = function() {
+            for(var i = 0 ; i < this.length; i++){
+                if(this.indexOf(this[i]) !== i){
+                    this.splice(i, 1);  //第i个开始删1个
+                    i--;
+                }
+            }
+        };
+
+        crr.unique();
+        console.log(crr);
+
+    // 函数形式
+        function arrUnique4(arr){
+            for(var i = 0 ; i < arr.length; i++){
+                if(arr.indexOf(arr[i]) !== i){
+                    arr.splice(i, 1);
+                    i--;
+                }
+            }
+        }
+
+        arrUnique4(crr);
+        console.log(crr);
+        
+    </script>
+</body>
+</html>
